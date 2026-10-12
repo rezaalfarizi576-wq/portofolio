@@ -102,37 +102,69 @@
         </div>
 
         <div class="hero-visual">
-          <div class="code-card">
-            <div class="code-card-header">
+          <div class="api-client-card" id="api-client-card">
+            <!-- Window Bar -->
+            <div class="api-card-topbar">
               <div class="code-dots">
                 <span class="dot red"></span>
                 <span class="dot yellow"></span>
                 <span class="dot green"></span>
               </div>
-              <span class="code-filename">BackendController.py</span>
-            </div>
-            <div class="code-card-body">
-              <pre><code><span class="code-keyword">class</span> <span class="code-class">BackendService</span>:
-    <span class="code-keyword">def</span> <span class="code-func">__init__</span>(self):
-        self.name = <span class="code-string">"Muhammad Reza Alfarizi"</span>
-        self.campus = <span class="code-string">"PENS"</span>
-        self.role = <span class="code-string">"Backend Developer"</span>
-        self.stack = [<span class="code-string">"PHP"</span>, <span class="code-string">"Python"</span>, <span class="code-string">"MySQL"</span>, <span class="code-string">"PostgreSQL"</span>]
-        self.status = <span class="code-string">"Ready to contribute"</span>
-
-    <span class="code-keyword">def</span> <span class="code-func">handle_request</span>(self, role_access):
-        <span class="code-keyword">if</span> role_access.is_valid():
-            <span class="code-keyword">return</span> {
-                <span class="code-string">"status"</span>: 200,
-                <span class="code-string">"message"</span>: <span class="code-string">"Clean Code & Robust API"</span>
-            }</code></pre>
-            </div>
-            <div class="code-card-footer">
-              <div class="footer-badge">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>REST API Verified</span>
+              <div class="api-title-bar">
+                <span class="api-client-label">REST API CLIENT</span>
               </div>
-              <span class="footer-meta">Git Versioned</span>
+              <button class="btn-copy-json" id="btn-copy-json" title="Salin Response JSON">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span class="copy-json-text">Copy JSON</span>
+              </button>
+            </div>
+
+            <!-- HTTP Request Bar -->
+            <div class="api-request-bar">
+              <span class="http-method-badge">GET</span>
+              <span class="api-endpoint-url">https://api.reza.dev/v1/developer</span>
+              <button class="btn-send-request" id="btn-send-request" title="Klik untuk simulasi panggil endpoint API">
+                <svg class="send-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <span class="send-btn-label">Send</span>
+              </button>
+            </div>
+
+            <!-- Response Meta Bar -->
+            <div class="api-meta-bar">
+              <div class="meta-left">
+                <span class="api-status-pill" id="api-status-pill">
+                  <span class="status-indicator-dot"></span>
+                  <span id="api-status-text">200 OK</span>
+                </span>
+                <span class="api-time" id="api-time">Time: <strong id="api-time-val">24 ms</strong></span>
+                <span class="api-size">Size: <strong>642 B</strong></span>
+              </div>
+              <div class="meta-right">
+                <span class="api-env-badge">application/json</span>
+              </div>
+            </div>
+
+            <!-- JSON Response Body with animated lines -->
+            <div class="api-card-body" id="api-card-body">
+              <pre><code id="api-code-block">{
+  <span class="json-key">"developer"</span>: <span class="json-string">"Muhammad Reza Alfarizi"</span>,
+  <span class="json-key">"campus"</span>: <span class="json-string">"Politeknik Elektronika Negeri Surabaya (PENS)"</span>,
+  <span class="json-key">"role"</span>: <span class="json-string">"Backend Developer"</span>,
+  <span class="json-key">"core_languages"</span>: [<span class="json-string">"PHP"</span>, <span class="json-string">"Python"</span>],
+  <span class="json-key">"databases"</span>: [<span class="json-string">"MySQL"</span>, <span class="json-string">"PostgreSQL"</span>],
+  <span class="json-key">"specialization"</span>: <span class="json-string">"REST API & RBAC Security"</span>,
+  <span class="json-key">"featured_project"</span>: <span class="json-string">"Sistem Donor Darah Lamongan"</span>,
+  <span class="json-key">"available_for_hire"</span>: <span class="json-bool">true</span>
+}</code></pre>
+            </div>
+
+            <!-- Card Footer -->
+            <div class="api-card-footer">
+              <div class="server-heartbeat">
+                <span class="pulse-dot"></span>
+                <span>Server Status: <strong class="text-online">Online (Fast Response)</strong></span>
+              </div>
+              <span class="api-version-tag">Git Versioned • Live API</span>
             </div>
           </div>
         </div>

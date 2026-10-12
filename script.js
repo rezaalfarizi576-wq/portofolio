@@ -181,6 +181,85 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 6000);
   }
 
+  // 7. INTERACTIVE REST API CLIENT CARD ANIMATION
+  const btnSendRequest = document.getElementById('btn-send-request');
+  const btnCopyJson = document.getElementById('btn-copy-json');
+  const apiStatusPill = document.getElementById('api-status-pill');
+  const apiStatusText = document.getElementById('api-status-text');
+  const apiTimeVal = document.getElementById('api-time-val');
+  const apiCardBody = document.getElementById('api-card-body');
+
+  if (btnSendRequest && apiCardBody) {
+    btnSendRequest.addEventListener('click', () => {
+      // Set to loading state
+      btnSendRequest.classList.add('loading');
+      const sendLabel = btnSendRequest.querySelector('.send-btn-label');
+      if (sendLabel) sendLabel.textContent = 'Calling...';
+
+      if (apiStatusPill && apiStatusText) {
+        apiStatusPill.classList.add('loading');
+        apiStatusText.textContent = 'Connecting...';
+      }
+
+      apiCardBody.classList.add('reloading');
+      if (apiTimeVal) apiTimeVal.textContent = '...';
+
+      // Simulate realistic API trip
+      setTimeout(() => {
+        const simulatedTime = Math.floor(Math.random() * 15) + 18; // 18ms - 32ms
+        if (apiTimeVal) apiTimeVal.textContent = `${simulatedTime} ms`;
+
+        btnSendRequest.classList.remove('loading');
+        if (sendLabel) sendLabel.textContent = 'Send';
+
+        if (apiStatusPill && apiStatusText) {
+          apiStatusPill.classList.remove('loading');
+          apiStatusText.textContent = '200 OK';
+        }
+
+        apiCardBody.classList.remove('reloading');
+        apiCardBody.classList.add('flash-glow');
+
+        setTimeout(() => {
+          apiCardBody.classList.remove('flash-glow');
+        }, 800);
+      }, 420);
+    });
+  }
+
+  // Copy JSON Response
+  if (btnCopyJson) {
+    btnCopyJson.addEventListener('click', async () => {
+      const jsonText = `{
+  "developer": "Muhammad Reza Alfarizi",
+  "campus": "Politeknik Elektronika Negeri Surabaya (PENS)",
+  "role": "Backend Developer",
+  "core_languages": ["PHP", "Python"],
+  "databases": ["MySQL", "PostgreSQL"],
+  "specialization": "REST API & RBAC Security",
+  "featured_project": "Sistem Donor Darah Lamongan",
+  "available_for_hire": true
+}`;
+
+      const copyLabel = btnCopyJson.querySelector('.copy-json-text');
+      try {
+        await navigator.clipboard.writeText(jsonText);
+        if (copyLabel) copyLabel.textContent = 'Copied!';
+        btnCopyJson.style.borderColor = 'var(--color-primary)';
+
+        setTimeout(() => {
+          if (copyLabel) copyLabel.textContent = 'Copy JSON';
+          btnCopyJson.style.borderColor = '';
+        }, 2000);
+      } catch (e) {
+        if (copyLabel) copyLabel.textContent = 'Copied!';
+        setTimeout(() => {
+          if (copyLabel) copyLabel.textContent = 'Copy JSON';
+        }, 2000);
+      }
+    });
+  }
+
   // Initial trigger for active link
   updateActiveNavLink();
 });
